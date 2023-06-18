@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 async function AllNotes_Fetch({ Token }) {
     if (Token) {
-        const response = await fetch(`${process.env.NOTES_BACKEND_URL || `http://localhost:8080`}/notes`, {
+        const response = await fetch(`https://notesapp-nodejs-backend.onrender.com/notes`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

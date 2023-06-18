@@ -15,7 +15,7 @@ function DeleteNote({ id }) {
         console.log("delete")
         e.preventDefault()
         console.log("delete")
-        const response = await fetch(`http://localhost:8080/notes/${id}`, {
+        const response = await fetch(`https://notesapp-nodejs-backend.onrender.com/notes/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',

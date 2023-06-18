@@ -24,7 +24,7 @@ function NotesComponent({id , title , description}) {
         e.preventDefault()
         console.log(Text)
         console.log("update")
-        const response = await fetch(`http://localhost:8080/notes/${id}`, {
+        const response = await fetch(`https://notesapp-nodejs-backend.onrender.com/notes/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',

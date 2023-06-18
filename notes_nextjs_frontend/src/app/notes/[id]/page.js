@@ -9,7 +9,7 @@ import Link from 'next/link';
 import React, { useContext } from 'react'
 
 async function findById_Note({ id, Token }) {
-    const response = await fetch(`http://localhost:8080/notes/${id}`, {
+    const response = await fetch(`https://notesapp-nodejs-backend.onrender.com/notes/${id}`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',

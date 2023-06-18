@@ -22,7 +22,7 @@ function SignUp() {
   // // signup user create in server 
   const SignupServer = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${process.env.NOTES_BACKEND_URL || `http://localhost:8080`}/signup`, {
+    const res = await fetch(`https://notesapp-nodejs-backend.onrender.com/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

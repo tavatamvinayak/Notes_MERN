@@ -9,7 +9,7 @@ import React, { useContext, useState } from 'react'
 // // Create Notes
 async function CreateNotes({ InputText, Token }) {
 
-    const response = await fetch(`${process.env.NOTES_BACKEND_URL || `http://localhost:8080`}/notes`, {
+    const response = await fetch(`https://notesapp-nodejs-backend.onrender.com/notes`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
