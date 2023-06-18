@@ -13,9 +13,9 @@ const Port = process.env.PORT ||  8080
 const dbconnect = require('./db')
 dbconnect();
 
-
+//  /// middleware 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
@@ -29,17 +29,15 @@ app.use('/notes',require('./CRUD/CreateNote'));  // // post     //  create Notes
 app.use('/notes',require('./CRUD/ReadNote'));    // // get      //  read notes
 app.use('/notes',require('./CRUD/UpdateNote'));  // // put      //  update notes
 app.use('/notes',require('./CRUD/DeleteNote'));  // // delete   //  delete notes
+app.use('/notes',require('./CRUD/OnlyOneNote'));  // // OnlyOneNote   //  OnlyOneNote notes
 
 
-app.get('/data',(req,res)=>{
-    res.json(
-        [{name:"vishal" , last:"tavatam"},
-        
-    ])
-    
-    console.log("data sended success ")
+
+
+// // testing perpuse
+app.get('/',(req,res)=>{
+res.send('server is running')
 })
-
 
 app.listen(Port,()=>{
     console.log("8080");

@@ -13,24 +13,18 @@ const jwt = require('jsonwebtoken');
 // /// Schema
 const Users = require('../models/User');
 
-
-const auth = require('../Middleware/auth');
-
-
 // // express validation 
-const { body ,  validationResult  } = require("express-validator");
-const {LOGIN_ExpressValidation } = require('./../validators/validation')
+const { body, validationResult } = require("express-validator");
+const { LOGIN_ExpressValidation } = require('./../validators/validation')
 
 
-router.post('/', LOGIN_ExpressValidation ,async (req, res) => {
+router.post('/', LOGIN_ExpressValidation, async (req, res) => {
 
-         // express validation errors
-         const errors = validationResult(req);
-         if(!errors.isEmpty()){
-             return res.status(400).json({errors:errors.array()})
-         }
-
-
+    // express validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+    }
 
     const Logins = new Users();
     // request body login
@@ -50,21 +44,21 @@ router.post('/', LOGIN_ExpressValidation ,async (req, res) => {
             const Compare_Password = bcrypt.compareSync(Password, FindEmail.Password);
             if (Compare_Password) {
                 console.log("Login success & password is corrected")
-            
+
                 // // JWT
-                const Token = jwt.sign({ Email: FindEmail.Email, id: FindEmail._id }, process.env.TOKEN_SCRETE_KEY);
-                console.log(Token)
-                res.json({ success: true, user: {Email : FindEmail.Email}, token: Token })
+                const Token = jwt.sign({id: FindEmail._id ,Email: FindEmail.Email }, process.env.TOKEN_SCRETE_KEY);
+                console.log(`Login token : ${Token} `)
+                res.json({ success: true, user: { Email: FindEmail.Email }, token: Token })
 
 
             } else {
                 console.log("PassWord invalid")
-                res.json({success : false , errors :'Email &  Password invalid', Password :'Password invalid'}).status(401)
+                res.json({ success: false, errors: 'Email &  Password invalid', Password: 'Password invalid' }).status(401)
             }
 
         } else {
             console.log("Email invalid ")
-            res.json({success : false  ,errors :'Email &  Password invalid', Email :"Email invalid"}).status(401)
+            res.json({ success: false, errors: 'Email &  Password invalid', Email: "Email invalid" }).status(401)
         }
 
     } catch (error) {

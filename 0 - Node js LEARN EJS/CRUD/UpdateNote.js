@@ -8,8 +8,19 @@ const auth = require('../Middleware/auth');
 const Notes = require('../models/Notes');
 
 
+// // Express validation
+const { body ,  validationResult  } = require("express-validator");
+const {CREATE_NOTES_ExpressValidation } = require('./../validators/validation')
 
-router.put('/:noteId', auth, async (req, res) => {
+
+router.put('/:noteId', auth, CREATE_NOTES_ExpressValidation, async (req, res) => {
+   
+          // express validation errors
+          const errors = validationResult(req);
+          if(!errors.isEmpty()){
+              return res.status(400).json({errors:errors.array()})
+          }
+   
     const id = req.params.noteId;
 
     const { title, description } = req.body;

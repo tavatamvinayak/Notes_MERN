@@ -21,7 +21,8 @@ router.post('/', auth, CREATE_NOTES_ExpressValidation ,async (req, res) => {
       }
 
 
-    console.log(req.userId)
+    console.log(`user Id : ${req.userId}`)
+    
 
     const { title, description } = req.body;
     const newNotes = new Notes();
